@@ -1,5 +1,6 @@
 import string
 import secrets
+import pyperclip
 
 
 def generate_password(length, numbers, symbols):
@@ -19,7 +20,6 @@ def generate_password(length, numbers, symbols):
 
 
 def copy_password(password):
-    import pyperclip
     pyperclip.copy(password)
     print('Password copied to clipboard')
 

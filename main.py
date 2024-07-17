@@ -2,7 +2,7 @@ from tkinter import *
 import sys
 import os
 from menu import create_menu
-from password import generate_password, copy_password, show_password
+from password import generate_password, copy_password
 
 root = Tk()
 
@@ -22,15 +22,23 @@ def restart_app():
     os.execl(python, python, * sys.argv)
 
 
+def show_password(password):
+    pass_box = Text(root, height=1, width=length.get() + 1)
+    pass_box.grid(column=2, row=8, sticky='w')
+    pass_box.insert(END, password)
+
+
 def pass_generated():
-    generage_password = generate_password(length.get(), num_val.get(), sym_val.get())
+    password = generate_password(length.get(), num_val.get(), sym_val.get())
+
     result = "Password generated"
     title_label.configure(text=result)
     gen_pass.grid_remove()
-    copy_pass = Button(root, text="Copy Password", fg="blue", command=copy_password)
+
+    copy_pass = Button(root, text="Copy Password", fg="blue", command=lambda: copy_password(password))
     copy_pass.grid(column=1, row=7, sticky='w')
 
-    show_pass = Button(root, text="Show Password", fg="red", command=show_password)
+    show_pass = Button(root, text="Show Password", fg="red", command=lambda: show_password(password))
     show_pass.grid(column=1, row=8, sticky='w')
 
     start_over = Button(root, text="Start Over", fg="black", command=restart_app)
