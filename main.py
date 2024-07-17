@@ -24,14 +24,13 @@ def main():
 
 
     def pass_generated():
-        global show_pass
         password = generate_password(length.get(), num_val.get(), sym_val.get())
 
         result = "Password generated"
         title_label.configure(text=result)
         gen_pass.grid_remove()
 
-        copy_pass = Button(root, text="Copy Password", fg="blue", command=lambda: copy_password(password))
+        copy_pass = Button(root, text="Copy Password", fg="blue", command=lambda: copy_password(password, copy_pass))
         copy_pass.grid(column=1, row=7, sticky='w')
 
         show_pass = Button(root, text="Show Password", fg="red", command=lambda: show_password(password, root, length, show_pass))

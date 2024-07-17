@@ -20,8 +20,9 @@ def generate_password(length, numbers, symbols):
     return password
 
 
-def copy_password(password):
+def copy_password(password, copy_pass):
     pyperclip.copy(password)
+    copy_pass['text'] = "Copied!"
 
 
 def show_password(password, root, length, show_pass):
