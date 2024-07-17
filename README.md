@@ -1,2 +1,2 @@
 # password-generator
-Password generator app written in python for the command-line
+Password generator app written in python
