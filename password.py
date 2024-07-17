@@ -1,3 +1,4 @@
+from tkinter import *
 import string
 import secrets
 import pyperclip
@@ -21,9 +22,17 @@ def generate_password(length, numbers, symbols):
 
 def copy_password(password):
     pyperclip.copy(password)
-    print('Password copied to clipboard')
 
 
-def show_password(password):
-    print(password)
+def show_password(password, root, length, show_pass):
+    pass_box = Text(root, height=1, width=length.get() + 1)
+    pass_box.grid(column=2, row=8, sticky='w')
+    pass_box.insert(END, password)
+    show_pass['text'] = "Hide Password"
+    show_pass['command'] = lambda: hide_password(pass_box, root, length, password, show_pass)
 
+
+def hide_password(pass_box, root, length, password, show_pass):
+    pass_box.grid_remove()
+    show_pass['text'] = "Show Password"
+    show_pass['command'] = lambda: show_password(password, root, length, show_pass)
