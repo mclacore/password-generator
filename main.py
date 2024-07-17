@@ -1,5 +1,8 @@
 from tkinter import *
+import sys
+import os
 from menu import create_menu
+from password import generate_password, copy_password, show_password
 
 root = Tk()
 
@@ -14,29 +17,39 @@ title_label = Label(root, text="Generate a new password")
 title_label.grid(column=1, row=1, sticky='w')
 
 
-def clicked():
+def restart_app():
+    python = sys.executable
+    os.execl(python, python, * sys.argv)
+
+
+def pass_generated():
+    generage_password = generate_password(length.get(), num_val.get(), sym_val.get())
     result = "Password generated"
     title_label.configure(text=result)
-    copy_pass = Button(root, text="Copy Password", fg="blue", command=clicked)
+    gen_pass.grid_remove()
+    copy_pass = Button(root, text="Copy Password", fg="blue", command=copy_password)
     copy_pass.grid(column=1, row=7, sticky='w')
 
-    show_pass = Button(root, text="Show Password", fg="blue", command=clicked)
+    show_pass = Button(root, text="Show Password", fg="red", command=show_password)
     show_pass.grid(column=1, row=8, sticky='w')
+
+    start_over = Button(root, text="Start Over", fg="black", command=restart_app)
+    start_over.grid(column=1, row=9, sticky='w')
 
 
 length = Scale(root, from_=8, to=128, orient=HORIZONTAL, label="Length", troughcolor="blue")
 length.grid(column=1, row=3, sticky='w')
 
-numbers = Checkbutton(root, text="Numbers", variable=IntVar(), onvalue=1, offvalue=0)
+num_val = IntVar()
+numbers = Checkbutton(root, text="Numbers", variable=num_val, onvalue=1, offvalue=0)
 numbers.grid(column=1, row=4, sticky='w')
 
-symbols = Checkbutton(root, text="Symbols", variable=IntVar(), onvalue=1, offvalue=0)
+sym_val = IntVar()
+symbols = Checkbutton(root, text="Symbols", variable=sym_val, onvalue=1, offvalue=0)
 symbols.grid(column=1, row=5, sticky='w')
 
-gen_pass = Button(root, text="Generate Password", fg="blue", command=clicked)
+gen_pass = Button(root, text="Generate Password", fg="blue", command=pass_generated)
 gen_pass.grid(column=1, row=6, sticky='w')
-
-
 
 
 root.mainloop()
