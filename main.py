@@ -23,12 +23,23 @@ def restart_app():
 
 
 def show_password(password):
+    global show_pass
     pass_box = Text(root, height=1, width=length.get() + 1)
     pass_box.grid(column=2, row=8, sticky='w')
     pass_box.insert(END, password)
+    show_pass['text'] = "Hide Password"
+    show_pass['command'] = lambda: hide_password(pass_box)
+
+
+def hide_password(pass_box):
+    global show_pass
+    pass_box.grid_remove()
+    show_pass['text'] = "Show Password"
+    show_pass['command'] = lambda: show_password(password)
 
 
 def pass_generated():
+    global show_pass
     password = generate_password(length.get(), num_val.get(), sym_val.get())
 
     result = "Password generated"
