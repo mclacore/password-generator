@@ -1,16 +1,14 @@
-from tkinter import *
-import sys
-import os
+from tkinter import Tk, Label, Button, Scale, Checkbutton, IntVar, HORIZONTAL
 from menu import create_menu
-from password import generate_password, copy_password, show_password, hide_password
+from password import generate_password, copy_password, show_password
 
-def restart_app():
-    root.destroy()
-    main()
 
 def main():
-    global root, length, num_val, sym_val, gen_pass, show_pass
     root = Tk()
+
+    def restart_app():
+        root.destroy()
+        main()
 
     menubar = create_menu(root)
     root.config(menu=menubar)

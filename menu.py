@@ -1,5 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
+from tkinter import messagebox, Menu
 
 
 def create_menu(root):
@@ -25,4 +24,3 @@ def create_help_bar(menubar):
 
 def about():
     messagebox.showinfo("About", "This is a simple password generator app written by @mclacore.")
-

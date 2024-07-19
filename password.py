@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Text, END
 import string
 import secrets
 import pyperclip
