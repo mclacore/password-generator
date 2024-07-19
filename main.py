@@ -1,9 +1,11 @@
+"""Adds GUI to password generator"""
 from tkinter import Tk, Label, Button, Scale, Checkbutton, IntVar, HORIZONTAL
 from menu import create_menu
 from password import generate_password, copy_password, show_password
 
 
 def main():
+    """Main function to run the password generator"""
     root = Tk()
 
     def restart_app():
@@ -28,13 +30,24 @@ def main():
         title_label.configure(text=result)
         gen_pass.grid_remove()
 
-        copy_pass = Button(root, text="Copy Password", fg="blue", command=lambda: copy_password(password, copy_pass))
+        copy_pass = Button(
+            root,
+            text="Copy Password",
+            fg="blue",
+            command=lambda: copy_password(password, copy_pass))
         copy_pass.grid(column=1, row=7, sticky='w')
 
-        show_pass = Button(root, text="Show Password", fg="red", command=lambda: show_password(password, root, length, show_pass))
+        show_pass = Button(
+            root,
+            text="Show Password",
+            fg="red",command=lambda: show_password(password, root, length, show_pass))
         show_pass.grid(column=1, row=8, sticky='w')
 
-        start_over = Button(root, text="Start Over", fg="black", command=restart_app)
+        start_over = Button(
+            root,
+            text="Start Over",
+            fg="black",
+            command=restart_app)
         start_over.grid(column=1, row=9, sticky='w')
 
 
