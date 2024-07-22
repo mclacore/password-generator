@@ -1,16 +1,15 @@
 """Adds GUI to password generator"""
 from tkinter import Tk, Label, Button, Scale, Checkbutton, IntVar, HORIZONTAL
-from menu import MenuBar
-from password import PasswordGenerator
 
 
 class Window:
-    def __init__(self, root, title="Password Generator", geometry="300x300", password_generator=None, menu_bar=None):
+    def __init__(self, root, title="Password Generator", geometry="300x300", password_generator=None, menu_bar=None, restart_callback=None):
         self.root = root
         self.root.title(title)
         self.root.geometry(geometry)
         self.password_generator = password_generator
         self.menu_bar = menu_bar
+        self.restart_callback = restart_callback
 
         self.init_menu()
 
@@ -39,9 +38,8 @@ class Window:
 
     
     def restart_app(self):
-        self.root.destroy()
-        self.__init__(root)
-        self.window.run()
+        if self.restart_callback:
+            self.restart_callback()
 
 
     def pass_generated(self):
@@ -73,8 +71,3 @@ class Window:
     def run(self):
         self.root.mainloop()
 
-
-if __name__ == "__main__":
-    root = Tk()
-    app = Window(root, password_generator=PasswordGenerator(), menu_bar=MenuBar())
-    app.run()
